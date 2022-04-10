@@ -1,0 +1,74 @@
+import csv 
+import os
+
+# Set path for file
+csvdata = '/Users/laurane/Desktop/UCI/senior year /Bootcamp/Homework/election_data.csv'
+
+votes = []
+county = []
+candidates = []
+winner=[]
+Raymon = []
+Raymonvotes = 0
+Charles = []
+Charlesvotes = 0
+Diana = []
+Dianavotes = 0
+
+
+
+
+with open(csvdata, encoding='utf') as csv_file:
+    csvreader = csv.reader(csv_file, delimiter=",")
+    next(csvreader, None) 
+    
+    for row in csvreader:
+        votes.append(int(row[0]))
+        county.append(row[1])
+        candidates.append(row[2])
+
+    #The total number of votes cast
+    totalvotes = (len(votes))
+
+#A complete list of candidates who received votes
+   
+            
+#The percentage of votes each candidate won
+Raymonpercent = (Raymonvotes / totalvotes) * 100
+Charlespercent =(Charlesvotes / totalvotes) * 100
+Dianapercent = (Dianavotes / totalvotes) * 100
+
+#The total number of votes each candidate won
+for candidate in candidates:
+        if candidate == "Raymon Anthony Doane":
+            Raymon.append(candidates)
+            Raymonvotes = len(Raymon)
+            
+        if candidate == "Charles Casper Stockham":
+                Charles.append(candidates)
+                Charlesvotes = len(Charles)
+            
+        if candidate == "Diana DeGette":
+                Diana.append(candidates)
+                Dianavotes = len(Diana)
+            
+#The winner of the election based on popular vote.
+if Raymonpercent > max(Charlespercent, Dianapercent):
+    winner = "Raymon Anthony Doane"
+if Charlespercent > max(Raymonpercent, Dianapercent):
+    winner = "Charles Casper Stockham"  
+if Dianapercent > max(Charlespercent, Raymonpercent):
+    winner = "Diana DeGette"
+    
+#print statement 
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {totalvotes}")
+print("-------------------------")
+print(f"Charles Casper Stockham: {Charlespercent}% {Charlesvotes}")
+print(f"Diana DeGette: {Dianapercent}% {Dianavotes}")
+print(f"Raymon Anthony Doane: {Raymonpercent}% {Raymonvotes}")
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
+
